@@ -1,3 +1,7 @@
+-- Nome: Tiago Costa Soares
+-- Matrícula: 2020.1.08.017
+
+
 -- Faça uma função que retorne os n primeiros termos de uma lista,
 -- sabendo que o número de elementos de uma lista vazia é zero.
 

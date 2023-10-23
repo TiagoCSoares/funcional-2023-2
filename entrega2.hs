@@ -11,6 +11,14 @@
 --		somafatorial a n = fatorial n + somafatorial (a-1) n
 
 
+
+
+--ultima antes de list comprehension
+--fatorial :: Int -> Int
+--fatorial 0 = 1
+--fatorial n = sum (replicate n (fatorial (n - 1))
+
+
 fatorial :: Int -> Int
 fatorial 0 = 1
-fatorial n = sum (replicate n (fatorial (n - 1)))
+fatorial n = sum [fatorial (n-1) | _ <- [1..n]]
