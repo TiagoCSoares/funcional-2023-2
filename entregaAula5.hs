@@ -23,8 +23,17 @@ duplastuplas (a:x) (b:y) = (a,b):(duplastuplas x y)
 ex3 :: [Char] -> [Char]
 ex3 a = filter isDigit a
 
+digits :: [Char] -> [Char]
+ex3 a = filter isDigit a
+
 
 ex4 :: [Char] -> [Char]
+ex4 [] = []
+ex4 (a:x)
+    |isDigit a = ex4 x
+    |otherwise = a:(ex4 x)
+
+letters :: [Char] -> [Char]
 ex4 [] = []
 ex4 (a:x)
     |isDigit a = ex4 x
