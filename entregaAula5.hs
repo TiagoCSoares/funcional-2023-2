@@ -24,10 +24,6 @@ ex3 :: [Char] -> [Char]
 ex3 a = filter isDigit a
 
 
-teste:: [Int] -> Int
-teste [] = 0
-teste (a:x) = a
-
 ex4 :: [Char] -> [Char]
 ex4 [] = []
 ex4 (a:x)
