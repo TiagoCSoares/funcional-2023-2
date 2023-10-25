@@ -24,7 +24,7 @@ ex3 :: [Char] -> [Char]
 ex3 a = filter isDigit a
 
 digits :: [Char] -> [Char]
-ex3 a = filter isDigit a
+digits a = filter isDigit a
 
 
 ex4 :: [Char] -> [Char]
@@ -34,7 +34,7 @@ ex4 (a:x)
     |otherwise = a:(ex4 x)
 
 letters :: [Char] -> [Char]
-ex4 [] = []
-ex4 (a:x)
-    |isDigit a = ex4 x
-    |otherwise = a:(ex4 x)
+letters [] = []
+letters (a:x)
+    |isDigit a = letters x
+    |otherwise = a:(letters x)
