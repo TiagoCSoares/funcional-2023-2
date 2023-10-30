@@ -32,6 +32,8 @@ ex4 [] = []
 ex4 (a:x)
     |isDigit a = ex4 x
     |otherwise = a:(ex4 x)
+    
+    
 
 letters :: [Char] -> [Char]
 letters [] = []
