@@ -29,21 +29,19 @@ verifica a b
 --(0, 3, 5, 7)
 
 ordenaEmTupla :: Int -> Int -> Int -> Int -> (Int, Int, Int, Int)
-ordenaEmTupla a b c d = (menor a (menor b (menor c d)), min a (max b ( min c d)) , min a (max b (max c d)), max a (max b (max c d)))
+ordenaEmTupla a b c d = tupla(qsort[a,b,c,d])
 
-menor :: Int -> Int -> Int
-menor a b
-    | a > b = b 
-    | otherwise = a 
+qsort :: [Int] -> [Int]
+qsort [] = []
+qsort (head:tale) = qsort [y | y <- tale, y < head]++[head]++qsort [y | y <- tale, y >= head]
 
-
--- organizaLista :: [Int] -> (Int, Int, Int, Int)
--- organizaLista [] = 0
--- organizaLista a:x = max a (organizaLista x)
+tupla :: [Int] -> (Int, Int, Int, Int)
+tupla [a,b,c,d] = (a,b,c,d) 
 
 
 
 
+--Ex 3
 --Defina a função quantosDias que, dado um ano, retorna o número de dias do ano.
 --Hugs > quantosDias 2002
 --365
@@ -51,6 +49,7 @@ menor a b
 --366
 quantosDias :: Int -> Int
 quantosDias a
+    | mod a 100 == 0 && mod a 400 /= 0 = 365
     | mod a 4 == 0 = 366
     | otherwise = 365
 
@@ -83,16 +82,74 @@ diasMes _ b
 -- Sem utilizar as funções max e min, faça uma função que receba uma lista e devolva uma dupla
 -- contendo o menor e o maior elemento
 -- Hugs > maioremenor [2,5,1,6,9,3,0,4]
-maiormenor :: [Int] -> (Int,Int)
-maiormenor [a] = (a, a)
-maiormenor (a:x) = (menorl [a] (menorl x), maiorl a (maiorl x))
+maioremenor :: [Int] -> (Int,Int)
+maioremenor (a:[]) = (a, a)
+maioremenor a = (menorLista a, maiorLista a)
 
-maiorl :: [Int] -> [Int] -> Int
-maiorl (a:x) (b:y)
-    | a > b = a 
+
+
+menorLista :: [Int] -> Int
+menorLista [a] = a
+menorLista (a:x) = menor a (menorLista x)
+
+
+menor :: Int -> Int -> Int
+menor a b 
+    | a > b = b    
+    | otherwise = a
+
+maiorLista :: [Int] -> Int
+maiorLista [a] = a
+maiorLista (a:x) = maior a (maiorLista x)
+
+maior :: Int -> Int -> Int
+maior a b 
+    | a > b = a    
     | otherwise = b
 
-menorl :: [Int] -> [Int] -> Int
-menorl (a:x) (b:y)
-    | a > b = a 
-    | otherwise = b
+
+
+--Ex 7
+--Faça uma função (ou mais) que recebe uma lista com números e retorna outra lista com os números
+--ordenados:
+--Hugs > ordena [7, 3, 5, 7, 8, 4, 4]
+--[3, 4, 4, 5, 7, 7, 8]
+
+
+ordena :: [Int] -> [Int]
+ordena [] = []
+ordena (a:b) = ordena [x | x <- b,  x < a] ++ [a] ++ ordena [x | x <- b, x >= a]
+
+
+--Ex 8
+--Faça uma função que, dada uma lista de inteiros, retorna uma lista com repetição de cada elemento de
+--acordo com seu valor.
+--Hugs > repeteElemento [1,2,3,4,5]
+--[1,2,2,3,3,3,4,4,4,4,5,5,5,5,5]
+
+repeteElemento :: [Int] -> [Int]
+repeteElemento [] = []
+repeteElemento (a:b) = (repete a a)++(repeteElemento b)
+
+repete :: Int -> Int -> [Int]
+repete 0 _ = []
+repete _ 0 = []
+repete a b = a:(repete a (b-1))
+
+
+--Ex 9
+--Faça uma função que calcula a série:
+-- serie = (1/x)+(x/2)+(3/x)+(x/4)
+--Você deve passar dois números por parâmetro: o primeiro contendo o valor de x e o segundo o
+--número de elementos da série (Para facilitar, use somente o valor inteiro – ignore as casas decimais).
+--Main> serie 1 100
+--2500
+--Main> serie 2 100
+--1226
+
+serie :: Int -> Int -> Int
+serie _ 0 = 0
+serie a 1 = div 1 a
+serie a b
+    | mod b 2 == 0 = div a b + (serie a (b-1))
+    | otherwise = div b a + (serie a (b-1)) 
