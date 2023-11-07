@@ -1,3 +1,7 @@
+--Nome: Tiago Costa Soares
+--Matrícula: 2020.1.08.017
+
+
 --Ex 1
 --Faça uma função que verifique se um número inteiro de entrada é primo. 
 --Lembrando: O número primo é divisível apenas por 1 e por ele mesmo. 
