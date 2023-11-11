@@ -80,6 +80,31 @@ diasMes _ b
 
 
 
+--Ex 5
+--Defina a função dia que, dados um ano, um mês e um dia do mês, devolve o número de ordem desse 
+--dia nesse ano. Se os dados não constituírem uma data válida, a função deve devolver -1. 
+--Hugs > dia 2004 1 1 
+--1 
+--Hugs > dia 2003 1 31 
+--31 
+--Hugs > dia 2004 2 1 
+--32 
+--Hugs > dia 2004 12 31 
+--366 
+--Hugs > dia 2005 12 31 
+--365 
+--Hugs > dia 2005 2 29 
+---1
+
+dia:: Int -> Int -> Int -> Int
+dia a 2 c
+    | quantosDias a == 365 && c >= 29 = -1
+    | quantosDias a = 366 && c > 30 = -1
+    | otherwise = 31+c
+
+
+
+
 
 
 -- Ex 6
@@ -157,3 +182,13 @@ serie a 1 = div 1 a
 serie a b
     | mod b 2 == 0 = div a b + (serie a (b-1))
     | otherwise = div b a + (serie a (b-1)) 
+
+
+
+
+
+
+
+
+
+
