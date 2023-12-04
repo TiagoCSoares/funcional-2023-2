@@ -102,16 +102,29 @@ diasMes _ b
 --    | quantosDias a == 365 && b == 1  
 
 
-ia :: Int -> Int -> Int -> Int
-dia ano mes
+dat :: Int -> Int -> Int -> Int
+dat ano mes dia
     | not (dataValida ano mes dia) = -1
     | otherwise = somaDias ano mes dia
 
 dataValida :: Int -> Int -> Int -> Bool
-dataValida ano mes
+dataValida ano mes dia
     | mes < 1  || mes > 12  || dia < 1 = False
     | mes == 2 = dia <= diasMes ano mes
     | otherwise = dia <= diasMes ano mes
 
 somaDias :: Int -> Int -> Int -> Int
 somaDias ano mes dia = sum [diasMes ano m | m <- [1..mes-1]] + dia
+
+
+
+
+
+-- Ex 6
+-- Sem utilizar as funções max e min, faça uma função que receba uma lista e devolva uma dupla
+-- contendo o menor e o maior elemento
+-- Hugs > maioremenor [2,5,1,6,9,3,0,4]
+
+maiormenor:: [Int] -> (Int, Int)
+maiormenor 
+
